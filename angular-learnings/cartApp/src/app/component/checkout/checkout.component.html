@@ -1,0 +1,21 @@
+<div class="card">
+  <div
+    style="
+      border-radius: 200px;
+      height: 200px;
+      width: 200px;
+      background: #f8faf5;
+      margin: 0 auto;
+    "
+  >
+    <i class="checkmark">✓</i>
+  </div>
+  <h1>Success</h1>
+  <p>
+    We received your purchase request;<br />
+    we'll be in touch shortly!
+  </p>
+  <input type="email" name="email" alt="Email" [(ngModel)]="email" />
+  <button class="btn btn-primary" (click)="onNotify()">Notify</button>
+  <button class="btn btn-secondary" routerLink="/invoice">Print</button>
+</div>

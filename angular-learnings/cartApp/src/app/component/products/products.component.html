@@ -1,0 +1,159 @@
+<div class="card-top container-fluid">
+  <div class="container d-flex">
+    <div class="item">
+      <a (click)="filter('')">
+        <img src="https://img.icons8.com/fluency/2x/check-all.png" alt="" />
+        <h6>All products</h6>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('electronics')">
+        <img
+          src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/2x/external-electronics-home-appliance-flaticons-lineal-color-flat-icons-8.png"
+          alt=""
+        />
+        <h6>Electronics</h6>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('fashion')">
+        <img
+          src="https://img.icons8.com/external-anggara-filled-outline-anggara-putra/2x/external-fashion-ecommerce-anggara-filled-outline-anggara-putra-2.png"
+          alt=""
+        />
+        <h6>Fashion</h6>
+      </a>
+    </div>
+
+    <select title="productFilter" (change)="sortProductByPrice($event.target)" class="select">
+      <option selected>Sort</option>
+      <option value="l2h">Low to High</option>
+      <option value="h2l">High to Low</option>
+      <option value="ol">$0 - $100</option>
+      <option value="br">$100-400</option>
+      <option value="gt">Above</option>
+    </select>
+
+    <!-- <div class="item">
+      <a (click)="onHighPrice()">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY46leiciJHzZltfxj8gwf9hcty3E3jF-aWA&usqp=CAU"
+          alt=""
+        />
+        <h6>High price</h6>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="onLowPrice()">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-YIMVHUAH2jDScJAqJUYIzMA5tb7n5wkjw&usqp=CAU"
+          alt=""
+        />
+        <h6>Low price</h6>
+      </a>
+    </div> -->
+
+    <!-- <div class="item">
+            <a (click)="OnLess()">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-YIMVHUAH2jDScJAqJUYIzMA5tb7n5wkjw&usqp=CAU"
+                alt=""
+              />
+              <h6>0-100</h6>
+            </a>
+          </div>
+
+          <div class="item">
+            <a (click)="btwRange()">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-YIMVHUAH2jDScJAqJUYIzMA5tb7n5wkjw&usqp=CAU"
+                alt=""
+              />
+              <h6>100-400</h6>
+            </a>
+          </div>
+
+          <div class="item">
+            <a (click)="OnGreater()">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-YIMVHUAH2jDScJAqJUYIzMA5tb7n5wkjw&usqp=CAU"
+                alt=""
+              />
+              <h6>>500</h6>
+            </a>
+          </div> -->
+
+    <!-- <div class="item">
+
+        <a  >
+           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-YIMVHUAH2jDScJAqJUYIzMA5tb7n5wkjw&usqp=CAU" alt="">
+           <h6>Range</h6>
+        </a>
+
+        <select>
+            <option selected>Sort by Price:</option>
+            <option><a (click)="OnHighPrice()">High to Low</a></option>
+            <option><a (click)="OnLowPrice()">Low to High</a></option>
+            <option>Less than $100</option>
+            <option>$100 to $500</option>
+            <option>More than $500</option>
+
+        </select>
+    </div> -->
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <ng-container
+      *ngFor="let item of filterCategory | filter: searchKey:'title'"
+    >
+      <div class="card col-md-3">
+        <img src="{{ item.image }}" alt="" />
+        <h5
+          style="
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100ch;
+          "
+        >
+          {{ item.title }}
+        </h5>
+        <p
+          style="
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100ch;
+          "
+        >
+          {{ item.description }}
+        </p>
+        <p>
+          <strong>Price:</strong> ${{ item.price }}
+          <i class="fas fa-heart float-left" (click)="OnWishList(item)"></i>
+        </p>
+
+        <button
+          class="btn btn-dark mt-1"
+          [disabled]="buttonDisabled"
+          [hidden]="cartItemIdList.includes(item.id)"
+          (click)="addtoCart(item)"
+        >
+          Add to cart
+        </button>
+
+        <button title="addOrMinus" class="btn btn-dark mt-1" [hidden]="!cartItemIdList.includes(item.id)">
+          <button title="add" (click)="onAdd(item)">
+            <i class="fa-solid fa-circle-plus"></i>
+          </button>
+          <button>{{ item.quantity }}</button>
+          <button title="minus" (click)="onMinus(item)">
+            <i class="fa-solid fa-circle-minus"></i>
+          </button>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>
